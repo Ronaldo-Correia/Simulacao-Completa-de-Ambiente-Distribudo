@@ -1,0 +1,16 @@
+C:\Users\minat\Documents\Simulacao-Completa-de-Ambiente-Distribudo\src\main\java\br\ifba\saj\dist\auth\AuthManager.java
+C:\Users\minat\Documents\Simulacao-Completa-de-Ambiente-Distribudo\src\main\java\br\ifba\saj\dist\common\AuthToken.java
+C:\Users\minat\Documents\Simulacao-Completa-de-Ambiente-Distribudo\src\main\java\br\ifba\saj\dist\common\Config.java
+C:\Users\minat\Documents\Simulacao-Completa-de-Ambiente-Distribudo\src\main\java\br\ifba\saj\dist\common\LamportClock.java
+C:\Users\minat\Documents\Simulacao-Completa-de-Ambiente-Distribudo\src\main\java\br\ifba\saj\dist\common\Message.java
+C:\Users\minat\Documents\Simulacao-Completa-de-Ambiente-Distribudo\src\main\java\br\ifba\saj\dist\groupa\Heartbeat.java
+C:\Users\minat\Documents\Simulacao-Completa-de-Ambiente-Distribudo\src\main\java\br\ifba\saj\dist\groupa\tcp\TcpClient.java
+C:\Users\minat\Documents\Simulacao-Completa-de-Ambiente-Distribudo\src\main\java\br\ifba\saj\dist\groupa\tcp\TcpServer.java
+C:\Users\minat\Documents\Simulacao-Completa-de-Ambiente-Distribudo\src\main\java\br\ifba\saj\dist\LeaderCoordinator.java
+C:\Users\minat\Documents\Simulacao-Completa-de-Ambiente-Distribudo\src\main\java\br\ifba\saj\dist\NodeApp.java
+C:\Users\minat\Documents\Simulacao-Completa-de-Ambiente-Distribudo\target\generated-sources\protobuf\grpc-java\br\ifba\saj\dist\qrpc\services\MonitorServiceGrpc.java
+C:\Users\minat\Documents\Simulacao-Completa-de-Ambiente-Distribudo\target\generated-sources\protobuf\java\br\ifba\saj\dist\qrpc\services\MonitorProto.java
+C:\Users\minat\Documents\Simulacao-Completa-de-Ambiente-Distribudo\target\generated-sources\protobuf\java\br\ifba\saj\dist\qrpc\services\StatusRequest.java
+C:\Users\minat\Documents\Simulacao-Completa-de-Ambiente-Distribudo\target\generated-sources\protobuf\java\br\ifba\saj\dist\qrpc\services\StatusRequestOrBuilder.java
+C:\Users\minat\Documents\Simulacao-Completa-de-Ambiente-Distribudo\target\generated-sources\protobuf\java\br\ifba\saj\dist\qrpc\services\StatusResponse.java
+C:\Users\minat\Documents\Simulacao-Completa-de-Ambiente-Distribudo\target\generated-sources\protobuf\java\br\ifba\saj\dist\qrpc\services\StatusResponseOrBuilder.java
