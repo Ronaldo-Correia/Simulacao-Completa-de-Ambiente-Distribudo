@@ -75,37 +75,65 @@ Execução de parte dos serviços em containers ou cloud gratuita.
 ## 📂 Organização dos Pacotes
 
 ```
-br.ifba.saj.dist
-│
-├── common
-│   ├── clock          # Relógios de Lamport
-│   ├── auth           # Token, Sessões e Controle de Acesso
-│   ├── model          # DTOs e mensagens
-│   └── util           # Funções utilitárias
-│
-├── groupa.grpc        # Grupo A (gRPC + Bully)
-│   ├── server
-│   ├── client
-│   ├── election
-│   ├── heartbeat
-│   └── interceptors
-│
-├── groupb.rmi         # Grupo B (RMI + Anel)
-│   ├── server
-│   ├── client
-│   ├── election
-│   ├── heartbeat
-│   └── interfaces
-│
-├── intergroup.multicast   # Comunicação entre líderes e snapshots
-│   ├── MulticastBus.java
-│   ├── LeaderNegotiation.java
-│   └── SnapshotCoordinator.java
-│
-└── runner             # Scripts de execução
-    ├── NodeLauncher.java
-    ├── GroupALauncher.java
-    ├── GroupBLauncher.java
-    └── DemoMain.java
-```
+src/main/java/br/ifba/saj/dist/
+ ├── app/
+ │   └── NodeApp.java
+ ├── common/
+ │   ├── LamportClock.java
+ │   ├── Message.java
+ │   └── Config.java
+ ├── auth/
+ │   ├── SessionManager.java
+ │   └── AuthToken.java               (se quiser manter)
+ ├── grpc/
+ │   ├── services/
+ │   │   ├── AuthServiceImpl.java
+ │   │   └── MonitorServiceImpl.java
+ │   ├── server/
+ │   │   └── GrpcServer.java          (opcional; hoje você inicia no NodeApp)
+ │   └── client/
+ │       └── GrpcClient.java
+ ├── tcp/
+ │   ├── TcpServer.java               
+ │   └── TcpClient.java               
+ ├── udp/
+ │   ├── MulticastServer.java
+ │   └── MulticastClient.java
+ ├── rmi/
+ │   ├── api/
+ │   │   └── MonitorRmi.java          stub p/ Marcelo
+ │   ├── server/
+ │   │   ├── MonitorRmiImpl.java      
+ │   │   └── RmiBootstrap.java        
+ │   └── client/
+ │       └── RmiClient.java           
+ ├── intergroup/
+ │   ├── LeaderDirectory.java          contrato
+ │   └── SimpleLeaderDirectory.java    mock (Marcelo substitui)
+ └── groupa/ / groupb/                (se quiser separar lógica de grupos)
 
+src/main/proto/
+ ├── auth.proto
+ └── monitor.proto
+
+```
+## 👨‍💻Como Executar
+
+1️⃣ Pré-requisitos:
+- **Java 17+**
+- **Maven 3.8+**
+
+- **Clonar o repositório:**
+```
+git clone https://github.com/Ronaldo-Correia/Simulacao-Completa-de-Ambiente-Distribudo.git
+cd Simulacao-Completa-de-Ambiente-Distribudo
+```
+2️⃣ Compilar e gerar classes gRPC
+```
+mvn clean install
+```
+3️⃣ No terminal executar um nó (servidor)
+Cada nó é executado pelo NodeApp. O ID do nó define a porta (8000 + nodeId).
+```
+mvn exec:java -Dexec.mainClass=br.ifba.saj.dist.NodeApp -Dexec.args="1 A"
+```  
