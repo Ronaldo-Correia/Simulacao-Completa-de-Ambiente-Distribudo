@@ -5,43 +5,38 @@ import br.ifba.saj.dist.common.Message;
 
 import java.io.*;
 import java.net.*;
-import java.util.concurrent.*;
 
-public class TcpServer {
+public class TcpServer implements Runnable {
     private final int port;
+    private final int nodeId;
     private final LamportClock clock = new LamportClock();
-    private final ExecutorService pool = Executors.newCachedThreadPool();
 
-    public TcpServer(int port) {
+    public TcpServer(int port, int nodeId) {
         this.port = port;
+        this.nodeId = nodeId;
     }
 
-    public void start() throws IOException {
+    @Override
+    public void run() {
         try (ServerSocket serverSocket = new ServerSocket(port)) {
-            System.out.println("[TCP SERVER] Listening on port " + port);
+            System.out.printf("[TCP SERVER] Node-%d ouvindo na porta %d%n", nodeId, port);
 
             while (true) {
-                Socket clientSocket = serverSocket.accept();
-                pool.submit(() -> handleClient(clientSocket));
+                Socket socket = serverSocket.accept();
+
+                try (ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+                     ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream())) {
+
+                    Message msg = (Message) in.readObject();
+                    clock.update(msg.getTimestamp());
+
+                    System.out.printf("[TCP SERVER] Node-%d recebeu de %s: %s (ts=%d)%n",
+                            nodeId, msg.getSender(), msg.getContent(), msg.getTimestamp());
+
+                    Message reply = new Message("Node-" + nodeId, "ACK", clock.increment());
+                    out.writeObject(reply);
+                }
             }
-        }
-    }
-
-    private void handleClient(Socket socket) {
-        try (
-            ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
-            ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream())
-        ) {
-            Message msg = (Message) in.readObject();
-            clock.update(msg.getTimestamp());
-
-            System.out.printf("[TCP SERVER] Received from %s: %s (ts=%d)%n",
-                    msg.getSender(), msg.getContent(), msg.getTimestamp());
-
-            // resposta com clock atualizado
-            Message reply = new Message("Server", "ACK", clock.increment());
-            out.writeObject(reply);
-
         } catch (Exception e) {
             e.printStackTrace();
         }

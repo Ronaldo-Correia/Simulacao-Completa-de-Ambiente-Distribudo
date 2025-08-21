@@ -1,20 +1,16 @@
 syntax = "proto3";
 
-option java_multiple_files = true;
-option java_package = "br.ifba.saj.dist.qrpc.services";
+option java_package = "br.ifba.saj.dist.proto";
 option java_outer_classname = "MonitorProto";
 
-service MonitorService {
-  rpc GetStatus(StatusRequest) returns (StatusResponse);
-}
-
 message StatusRequest {
-  string token = 1;
+  int32 nodeId = 1;
 }
 
 message StatusResponse {
-  string nodeId = 1;
-  double cpuUsage = 2;
-  double memoryUsage = 3;
-  string uptime = 4;
+  string status = 1;
+}
+
+service MonitorService {
+  rpc checkStatus(StatusRequest) returns (StatusResponse);
 }

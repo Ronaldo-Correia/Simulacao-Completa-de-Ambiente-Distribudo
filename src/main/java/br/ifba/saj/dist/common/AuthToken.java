@@ -1,20 +1,18 @@
 package br.ifba.saj.dist.common;
 
-/**
- * Token de autenticação para controle de acesso.
- */
 
+import java.io.Serializable;
 import java.time.Instant;
+import java.util.UUID;
 
-public class AuthToken {
-    private final String token;
-    private final Instant expiry;
+public class AuthToken implements Serializable {
+    private final String value;
+    private final Instant expiresAt;
 
-    public AuthToken(String token, long ttlSeconds) {
-        this.token = token;
-        this.expiry = Instant.now().plusSeconds(ttlSeconds);
+    public AuthToken(String owner, int ttlSeconds) {
+        this.value = owner + "-" + UUID.randomUUID();
+        this.expiresAt = Instant.now().plusSeconds(ttlSeconds);
     }
-
-    public String getToken() { return token; }
-    public boolean isExpired() { return Instant.now().isAfter(expiry); }
+    public String getValue() { return value; }
+    public boolean isExpired() { return Instant.now().isAfter(expiresAt); }
 }

@@ -1,26 +1,19 @@
 package br.ifba.saj.dist.auth;
 
 import br.ifba.saj.dist.common.AuthToken;
-
-import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class AuthManager {
-    private final Map<String, AuthToken> sessions = new HashMap<>();
-    private final long ttlSeconds;
+    private static final ConcurrentHashMap<String, AuthToken> TOKENS = new ConcurrentHashMap<>();
 
-    public AuthManager(long ttlSeconds) {
-        this.ttlSeconds = ttlSeconds;
+    public static String generateToken(int nodeId) {
+        AuthToken t = new AuthToken("node-" + nodeId, 60); // 60s
+        TOKENS.put(t.getValue(), t);
+        return t.getValue();
     }
 
-    public AuthToken login(String userId) {
-        String tokenStr = UUID.randomUUID().toString();
-        AuthToken token = new AuthToken(tokenStr, ttlSeconds);
-        sessions.put(userId, token);
-        return token;
-    }
-
-    public boolean validate(String userId, String token) {
-        AuthToken t = sessions.get(userId);
-        return t != null && t.getToken().equals(token) && !t.isExpired();
+    public static boolean isValid(String token) {
+        AuthToken t = TOKENS.get(token);
+        return t != null && !t.isExpired();
     }
 }
