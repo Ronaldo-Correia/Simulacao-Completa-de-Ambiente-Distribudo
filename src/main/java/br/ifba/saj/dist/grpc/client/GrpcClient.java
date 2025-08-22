@@ -1,8 +1,9 @@
-package br.ifba.saj.dist.grpc;
+package br.ifba.saj.dist.grpc.client;
 
 import br.ifba.saj.dist.proto.AuthProto.AuthRequest;
 import br.ifba.saj.dist.proto.AuthProto.AuthResponse;
 import br.ifba.saj.dist.proto.AuthServiceGrpc;
+
 import br.ifba.saj.dist.proto.MonitorProto.StatusRequest;
 import br.ifba.saj.dist.proto.MonitorProto.StatusResponse;
 import br.ifba.saj.dist.proto.MonitorServiceGrpc;
@@ -21,41 +22,31 @@ public class GrpcClient {
         String host = args[0];
         int nodeId = Integer.parseInt(args[1]);
         String token = args.length > 2 ? args[2] : "default-token";
-
         int port = 8000 + nodeId;
 
-        // Cria o canal
         ManagedChannel channel = ManagedChannelBuilder
                 .forAddress(host, port)
                 .usePlaintext()
                 .build();
 
         try {
-            // ---- 1) Chama AuthService ----
-            AuthServiceGrpc.AuthServiceBlockingStub authStub = AuthServiceGrpc.newBlockingStub(channel);
+            // ---- Auth ----
+            AuthServiceGrpc.AuthServiceBlockingStub auth = AuthServiceGrpc.newBlockingStub(channel);
+            AuthRequest authReq = AuthRequest.newBuilder().setToken(token).build();
+            AuthResponse authRes = auth.authenticate(authReq);
+            System.out.println("Auth success=" + authRes.getSuccess() + " msg=" + authRes.getMessage());
 
-            AuthRequest authRequest = AuthRequest.newBuilder()
-                    .setToken(token)
-                    .build();
+            if (authRes.getSuccess()) {
+                // ---- Monitor ----
+                MonitorServiceGrpc.MonitorServiceBlockingStub mon = MonitorServiceGrpc.newBlockingStub(channel);
 
-            AuthResponse authResponse = authStub.authenticate(authRequest);
-
-            if (authResponse.getSuccess()) {
-                System.out.println("✅ Autenticado: " + authResponse.getMessage());
-
-                // ---- 2) Chama MonitorService ----
-                MonitorServiceGrpc.MonitorServiceBlockingStub monitorStub = MonitorServiceGrpc.newBlockingStub(channel);
-
-                StatusRequest statusRequest = StatusRequest.newBuilder()
-                        .setNodeId(nodeId)
+                StatusRequest sreq = StatusRequest.newBuilder()
+                        .setNodeId(nodeId) 
                         .build();
 
-                StatusResponse statusResponse = monitorStub.checkStatus(statusRequest);
+                StatusResponse sres = mon.checkStatus(sreq);
 
-                System.out.println("📊 Status do nó: " + statusResponse.getStatus());
-
-            } else {
-                System.out.println("❌ Falha na autenticação: " + authResponse.getMessage());
+                System.out.println("📊 Resposta do monitor: " + sres);
             }
 
         } catch (Exception e) {

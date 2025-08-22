@@ -4,8 +4,10 @@ option java_package = "br.ifba.saj.dist.proto";
 option java_outer_classname = "MonitorProto";
 
 message StatusRequest {
-  int32 nodeId = 1;
+  int32 node_id = 1;
+  string session_token = 2; // NOVO
 }
+
 
 message StatusResponse {
   string status = 1;

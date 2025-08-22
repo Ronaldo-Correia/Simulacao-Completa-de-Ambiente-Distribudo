@@ -590,6 +590,18 @@ public final class AuthProto {
      */
     com.google.protobuf.ByteString
         getMessageBytes();
+
+    /**
+     * <code>string session_token = 3;</code>
+     * @return The sessionToken.
+     */
+    java.lang.String getSessionToken();
+    /**
+     * <code>string session_token = 3;</code>
+     * @return The bytes for sessionToken.
+     */
+    com.google.protobuf.ByteString
+        getSessionTokenBytes();
   }
   /**
    * Protobuf type {@code AuthResponse}
@@ -605,6 +617,7 @@ public final class AuthProto {
     }
     private AuthResponse() {
       message_ = "";
+      sessionToken_ = "";
     }
 
     @java.lang.Override
@@ -682,6 +695,45 @@ public final class AuthProto {
       }
     }
 
+    public static final int SESSION_TOKEN_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object sessionToken_ = "";
+    /**
+     * <code>string session_token = 3;</code>
+     * @return The sessionToken.
+     */
+    @java.lang.Override
+    public java.lang.String getSessionToken() {
+      java.lang.Object ref = sessionToken_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        sessionToken_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string session_token = 3;</code>
+     * @return The bytes for sessionToken.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getSessionTokenBytes() {
+      java.lang.Object ref = sessionToken_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        sessionToken_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -702,6 +754,9 @@ public final class AuthProto {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(message_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, message_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sessionToken_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, sessionToken_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -717,6 +772,9 @@ public final class AuthProto {
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(message_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, message_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sessionToken_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, sessionToken_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -737,6 +795,8 @@ public final class AuthProto {
           != other.getSuccess()) return false;
       if (!getMessage()
           .equals(other.getMessage())) return false;
+      if (!getSessionToken()
+          .equals(other.getSessionToken())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -753,6 +813,8 @@ public final class AuthProto {
           getSuccess());
       hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
       hash = (53 * hash) + getMessage().hashCode();
+      hash = (37 * hash) + SESSION_TOKEN_FIELD_NUMBER;
+      hash = (53 * hash) + getSessionToken().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -884,6 +946,7 @@ public final class AuthProto {
         bitField0_ = 0;
         success_ = false;
         message_ = "";
+        sessionToken_ = "";
         return this;
       }
 
@@ -922,6 +985,9 @@ public final class AuthProto {
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
           result.message_ = message_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.sessionToken_ = sessionToken_;
         }
       }
 
@@ -977,6 +1043,11 @@ public final class AuthProto {
           bitField0_ |= 0x00000002;
           onChanged();
         }
+        if (!other.getSessionToken().isEmpty()) {
+          sessionToken_ = other.sessionToken_;
+          bitField0_ |= 0x00000004;
+          onChanged();
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -1013,6 +1084,11 @@ public final class AuthProto {
                 bitField0_ |= 0x00000002;
                 break;
               } // case 18
+              case 26: {
+                sessionToken_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1133,6 +1209,78 @@ public final class AuthProto {
         onChanged();
         return this;
       }
+
+      private java.lang.Object sessionToken_ = "";
+      /**
+       * <code>string session_token = 3;</code>
+       * @return The sessionToken.
+       */
+      public java.lang.String getSessionToken() {
+        java.lang.Object ref = sessionToken_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          sessionToken_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string session_token = 3;</code>
+       * @return The bytes for sessionToken.
+       */
+      public com.google.protobuf.ByteString
+          getSessionTokenBytes() {
+        java.lang.Object ref = sessionToken_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          sessionToken_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string session_token = 3;</code>
+       * @param value The sessionToken to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSessionToken(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        sessionToken_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string session_token = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSessionToken() {
+        sessionToken_ = getDefaultInstance().getSessionToken();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string session_token = 3;</code>
+       * @param value The bytes for sessionToken to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSessionTokenBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        sessionToken_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -1217,10 +1365,11 @@ public final class AuthProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\nauth.proto\"\034\n\013AuthRequest\022\r\n\005token\030\001 \001" +
-      "(\t\"0\n\014AuthResponse\022\017\n\007success\030\001 \001(\010\022\017\n\007m" +
-      "essage\030\002 \001(\t2:\n\013AuthService\022+\n\014authentic" +
-      "ate\022\014.AuthRequest\032\r.AuthResponseB#\n\026br.i" +
-      "fba.saj.dist.protoB\tAuthProtob\006proto3"
+      "(\t\"G\n\014AuthResponse\022\017\n\007success\030\001 \001(\010\022\017\n\007m" +
+      "essage\030\002 \001(\t\022\025\n\rsession_token\030\003 \001(\t2:\n\013A" +
+      "uthService\022+\n\014authenticate\022\014.AuthRequest" +
+      "\032\r.AuthResponseB#\n\026br.ifba.saj.dist.prot" +
+      "oB\tAuthProtob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1237,7 +1386,7 @@ public final class AuthProto {
     internal_static_AuthResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_AuthResponse_descriptor,
-        new java.lang.String[] { "Success", "Message", });
+        new java.lang.String[] { "Success", "Message", "SessionToken", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

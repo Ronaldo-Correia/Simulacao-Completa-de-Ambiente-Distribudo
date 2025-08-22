@@ -19,10 +19,30 @@ public final class MonitorProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int32 nodeId = 1;</code>
+     * <code>int32 node_id = 1;</code>
      * @return The nodeId.
      */
     int getNodeId();
+
+    /**
+     * <pre>
+     * NOVO
+     * </pre>
+     *
+     * <code>string session_token = 2;</code>
+     * @return The sessionToken.
+     */
+    java.lang.String getSessionToken();
+    /**
+     * <pre>
+     * NOVO
+     * </pre>
+     *
+     * <code>string session_token = 2;</code>
+     * @return The bytes for sessionToken.
+     */
+    com.google.protobuf.ByteString
+        getSessionTokenBytes();
   }
   /**
    * Protobuf type {@code StatusRequest}
@@ -37,6 +57,7 @@ public final class MonitorProto {
       super(builder);
     }
     private StatusRequest() {
+      sessionToken_ = "";
     }
 
     @java.lang.Override
@@ -64,15 +85,62 @@ public final class MonitorProto {
               br.ifba.saj.dist.proto.MonitorProto.StatusRequest.class, br.ifba.saj.dist.proto.MonitorProto.StatusRequest.Builder.class);
     }
 
-    public static final int NODEID_FIELD_NUMBER = 1;
+    public static final int NODE_ID_FIELD_NUMBER = 1;
     private int nodeId_ = 0;
     /**
-     * <code>int32 nodeId = 1;</code>
+     * <code>int32 node_id = 1;</code>
      * @return The nodeId.
      */
     @java.lang.Override
     public int getNodeId() {
       return nodeId_;
+    }
+
+    public static final int SESSION_TOKEN_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object sessionToken_ = "";
+    /**
+     * <pre>
+     * NOVO
+     * </pre>
+     *
+     * <code>string session_token = 2;</code>
+     * @return The sessionToken.
+     */
+    @java.lang.Override
+    public java.lang.String getSessionToken() {
+      java.lang.Object ref = sessionToken_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        sessionToken_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * NOVO
+     * </pre>
+     *
+     * <code>string session_token = 2;</code>
+     * @return The bytes for sessionToken.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getSessionTokenBytes() {
+      java.lang.Object ref = sessionToken_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        sessionToken_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -92,6 +160,9 @@ public final class MonitorProto {
       if (nodeId_ != 0) {
         output.writeInt32(1, nodeId_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sessionToken_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, sessionToken_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -104,6 +175,9 @@ public final class MonitorProto {
       if (nodeId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(1, nodeId_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sessionToken_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, sessionToken_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -122,6 +196,8 @@ public final class MonitorProto {
 
       if (getNodeId()
           != other.getNodeId()) return false;
+      if (!getSessionToken()
+          .equals(other.getSessionToken())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -133,8 +209,10 @@ public final class MonitorProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + NODEID_FIELD_NUMBER;
+      hash = (37 * hash) + NODE_ID_FIELD_NUMBER;
       hash = (53 * hash) + getNodeId();
+      hash = (37 * hash) + SESSION_TOKEN_FIELD_NUMBER;
+      hash = (53 * hash) + getSessionToken().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -265,6 +343,7 @@ public final class MonitorProto {
         super.clear();
         bitField0_ = 0;
         nodeId_ = 0;
+        sessionToken_ = "";
         return this;
       }
 
@@ -300,6 +379,9 @@ public final class MonitorProto {
         int from_bitField0_ = bitField0_;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.nodeId_ = nodeId_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.sessionToken_ = sessionToken_;
         }
       }
 
@@ -350,6 +432,11 @@ public final class MonitorProto {
         if (other.getNodeId() != 0) {
           setNodeId(other.getNodeId());
         }
+        if (!other.getSessionToken().isEmpty()) {
+          sessionToken_ = other.sessionToken_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -381,6 +468,11 @@ public final class MonitorProto {
                 bitField0_ |= 0x00000001;
                 break;
               } // case 8
+              case 18: {
+                sessionToken_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -400,7 +492,7 @@ public final class MonitorProto {
 
       private int nodeId_ ;
       /**
-       * <code>int32 nodeId = 1;</code>
+       * <code>int32 node_id = 1;</code>
        * @return The nodeId.
        */
       @java.lang.Override
@@ -408,7 +500,7 @@ public final class MonitorProto {
         return nodeId_;
       }
       /**
-       * <code>int32 nodeId = 1;</code>
+       * <code>int32 node_id = 1;</code>
        * @param value The nodeId to set.
        * @return This builder for chaining.
        */
@@ -420,12 +512,104 @@ public final class MonitorProto {
         return this;
       }
       /**
-       * <code>int32 nodeId = 1;</code>
+       * <code>int32 node_id = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearNodeId() {
         bitField0_ = (bitField0_ & ~0x00000001);
         nodeId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object sessionToken_ = "";
+      /**
+       * <pre>
+       * NOVO
+       * </pre>
+       *
+       * <code>string session_token = 2;</code>
+       * @return The sessionToken.
+       */
+      public java.lang.String getSessionToken() {
+        java.lang.Object ref = sessionToken_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          sessionToken_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * NOVO
+       * </pre>
+       *
+       * <code>string session_token = 2;</code>
+       * @return The bytes for sessionToken.
+       */
+      public com.google.protobuf.ByteString
+          getSessionTokenBytes() {
+        java.lang.Object ref = sessionToken_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          sessionToken_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * NOVO
+       * </pre>
+       *
+       * <code>string session_token = 2;</code>
+       * @param value The sessionToken to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSessionToken(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        sessionToken_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * NOVO
+       * </pre>
+       *
+       * <code>string session_token = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSessionToken() {
+        sessionToken_ = getDefaultInstance().getSessionToken();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * NOVO
+       * </pre>
+       *
+       * <code>string session_token = 2;</code>
+       * @param value The bytes for sessionToken to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSessionTokenBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        sessionToken_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -1067,11 +1251,12 @@ public final class MonitorProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rmonitor.proto\"\037\n\rStatusRequest\022\016\n\006node" +
-      "Id\030\001 \001(\005\" \n\016StatusResponse\022\016\n\006status\030\001 \001" +
-      "(\t2@\n\016MonitorService\022.\n\013checkStatus\022\016.St" +
-      "atusRequest\032\017.StatusResponseB&\n\026br.ifba." +
-      "saj.dist.protoB\014MonitorProtob\006proto3"
+      "\n\rmonitor.proto\"7\n\rStatusRequest\022\017\n\007node" +
+      "_id\030\001 \001(\005\022\025\n\rsession_token\030\002 \001(\t\" \n\016Stat" +
+      "usResponse\022\016\n\006status\030\001 \001(\t2@\n\016MonitorSer" +
+      "vice\022.\n\013checkStatus\022\016.StatusRequest\032\017.St" +
+      "atusResponseB&\n\026br.ifba.saj.dist.protoB\014" +
+      "MonitorProtob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1082,7 +1267,7 @@ public final class MonitorProto {
     internal_static_StatusRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_StatusRequest_descriptor,
-        new java.lang.String[] { "NodeId", });
+        new java.lang.String[] { "NodeId", "SessionToken", });
     internal_static_StatusResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_StatusResponse_fieldAccessorTable = new

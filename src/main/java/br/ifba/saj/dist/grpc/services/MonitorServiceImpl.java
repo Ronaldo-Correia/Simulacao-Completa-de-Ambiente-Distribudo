@@ -8,6 +8,17 @@ import io.grpc.stub.StreamObserver;
 public class MonitorServiceImpl extends MonitorServiceGrpc.MonitorServiceImplBase {
     @Override
     public void checkStatus(StatusRequest request, StreamObserver<StatusResponse> responseObserver) {
+        if (!AuthServiceImpl.SESSIONS.isValid(request.getSessionToken())) {
+            responseObserver.onNext(StatusResponse.newBuilder()
+                    .setStatus("unauthorized")
+                    .build());
+            responseObserver.onCompleted();
+            return;
+        }
+
+        // Renova sessão
+        AuthServiceImpl.SESSIONS.renew(request.getSessionToken());
+
         StatusResponse response = StatusResponse.newBuilder()
                 .setStatus("Node " + request.getNodeId() + " está ativo")
                 .build();
