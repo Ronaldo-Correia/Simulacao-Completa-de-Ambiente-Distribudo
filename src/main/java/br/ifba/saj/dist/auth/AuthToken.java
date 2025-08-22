@@ -1,4 +1,4 @@
-package br.ifba.saj.dist.common;
+package br.ifba.saj.dist.auth;
 
 
 import java.io.Serializable;

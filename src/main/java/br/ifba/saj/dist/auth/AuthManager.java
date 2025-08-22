@@ -1,6 +1,5 @@
 package br.ifba.saj.dist.auth;
 
-import br.ifba.saj.dist.common.AuthToken;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class AuthManager {
