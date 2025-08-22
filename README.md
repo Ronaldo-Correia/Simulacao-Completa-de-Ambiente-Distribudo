@@ -76,21 +76,21 @@ Execução de parte dos serviços em containers ou cloud gratuita.
 
 ```
 src/main/java/br/ifba/saj/dist/
- ├── app/
- │   └── NodeApp.java
  ├── common/
  │   ├── LamportClock.java
  │   ├── Message.java
  │   └── Config.java
+ |   └── SessionManager.java
+ |   └── CommunicationHelper.java
  ├── auth/
  │   ├── SessionManager.java
- │   └── AuthToken.java               (se quiser manter)
+ │   └── AuthToken.java               
  ├── grpc/
  │   ├── services/
  │   │   ├── AuthServiceImpl.java
  │   │   └── MonitorServiceImpl.java
  │   ├── server/
- │   │   └── GrpcServer.java          (opcional; hoje você inicia no NodeApp)
+ │   │   └── GrpcServer.java          
  │   └── client/
  │       └── GrpcClient.java
  ├── tcp/
@@ -101,16 +101,18 @@ src/main/java/br/ifba/saj/dist/
  │   └── MulticastClient.java
  ├── rmi/
  │   ├── api/
- │   │   └── MonitorRmi.java          stub p/ Marcelo
+ │   │   └── MonitorRmi.java          
  │   ├── server/
  │   │   ├── MonitorRmiImpl.java      
- │   │   └── RmiBootstrap.java        
+ │   │   └── RmiBootstrap.java
+ |   |   └── RmiServer.java          
  │   └── client/
  │       └── RmiClient.java           
- ├── intergroup/
- │   ├── LeaderDirectory.java          contrato
- │   └── SimpleLeaderDirectory.java    mock (Marcelo substitui)
- └── groupa/ / groupb/                (se quiser separar lógica de grupos)
+ ├──── LeaderDirectory.java          
+ │──── SimpleLeaderDirectory.java    
+ |──── TCPServerHandler.java
+ |──── NodeApp.java
+ └── groupa/ / groupb/                
 
 src/main/proto/
  ├── auth.proto
@@ -126,14 +128,26 @@ src/main/proto/
 - **Clonar o repositório:**
 ```
 git clone https://github.com/Ronaldo-Correia/Simulacao-Completa-de-Ambiente-Distribudo.git
-cd Simulacao-Completa-de-Ambiente-Distribudo
+cd /local do projeto/Simulacao-Completa-de-Ambiente-Distribudo
 ```
 2️⃣ Compilar e gerar classes gRPC
 ```
 mvn clean install
 ```
-3️⃣ No terminal executar um nó (servidor)
+3️⃣ No terminal(1) executar um nó (servidor)
 Cada nó é executado pelo NodeApp. O ID do nó define a porta (8000 + nodeId).
 ```
-mvn exec:java -Dexec.mainClass=br.ifba.saj.dist.NodeApp -Dexec.args="1 A"
-```  
+cd /local do projeto/Simulacao-Completa-de-Ambiente-Distribudo
+mvn exec:java -Dexec.mainClass="br.ifba.saj.dist.NodeApp" -Dexec.args="1 A"
+```
+4️⃣No terminal(2) executar um nó (cliente)
+```
+cd /local do projeto/Simulacao-Completa-de-Ambiente-Distribudo
+mvn exec:java -Dexec.mainClass="br.ifba.saj.dist.NodeApp" -Dexec.args="2 A"
+```
+5️⃣No terminal(3) executar um nó (cliente)
+```
+cd /local do projeto/Simulacao-Completa-de-Ambiente-Distribudo
+mvn exec:java -Dexec.mainClass="br.ifba.saj.dist.NodeApp" -Dexec.args="3 A"
+```
+
