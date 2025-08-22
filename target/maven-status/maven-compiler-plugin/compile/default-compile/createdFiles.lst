@@ -1,8 +1,1 @@
-br\ifba\saj\dist\proto\MonitorServiceGrpc$MonitorServiceBlockingStub.class
-br\ifba\saj\dist\proto\MonitorServiceGrpc$MonitorServiceFileDescriptorSupplier.class
-br\ifba\saj\dist\proto\MonitorServiceGrpc$MonitorServiceBaseDescriptorSupplier.class
-br\ifba\saj\dist\proto\MonitorServiceGrpc$MonitorServiceMethodDescriptorSupplier.class
-br\ifba\saj\dist\proto\MonitorServiceGrpc$MonitorServiceStub.class
-br\ifba\saj\dist\proto\MonitorServiceGrpc$MonitorServiceFutureStub.class
-br\ifba\saj\dist\proto\MonitorServiceGrpc.class
-br\ifba\saj\dist\proto\MonitorServiceGrpc$MethodHandlers.class
+br\ifba\saj\dist\auth\AuthToken.class
