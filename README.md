@@ -2,7 +2,7 @@
 - **Instituição:** IFBA - Instituto Federal da Bahia
 - **Curso:** Análise e Desenvolvimento de Sistemas (ADS)
 - **Disciplina:** Sistemas Distribuídos
-- **Projeto:** Criação e Evolução de um Sistema Mal Projetado com Aplicação Guiada de Padrões
+- **Projeto:** Sistema Distribuído de Monitoramento com Núcleo Modular
 - **Professor:** Felipe de Souza Silva
 - **Semestre:** 5
 - **Ano:** 2025.1
