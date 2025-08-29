@@ -2,7 +2,7 @@
 - **Instituição:** IFBA - Instituto Federal da Bahia
 - **Curso:** Análise e Desenvolvimento de Sistemas (ADS)
 - **Disciplina:** Sistemas Distribuídos
-- **Projeto:** Criação e Evolução de um Sistema Mal Projetado com Aplicação Guiada de Padrões
+- **Projeto:** Sistema Distribuído de Monitoramento com Núcleo Modular
 - **Professor:** Felipe de Souza Silva
 - **Semestre:** 5
 - **Ano:** 2025.1
@@ -79,12 +79,14 @@ src/main/java/br/ifba/saj/dist/
  ├── common/
  │   ├── LamportClock.java
  │   ├── Message.java
- │   └── Config.java
- |   └── SessionManager.java
- |   └── CommunicationHelper.java
+ │   ├── Config.java
+ │   ├── SessionManager.java
+ │   └── CommunicationHelper.java
+ │
  ├── auth/
  │   ├── SessionManager.java
  │   └── AuthToken.java               
+ │
  ├── grpc/
  │   ├── services/
  │   │   ├── AuthServiceImpl.java
@@ -93,30 +95,41 @@ src/main/java/br/ifba/saj/dist/
  │   │   └── GrpcServer.java          
  │   └── client/
  │       └── GrpcClient.java
+ │
  ├── tcp/
  │   ├── TcpServer.java               
  │   └── TcpClient.java               
+ │
  ├── udp/
  │   ├── MulticastServer.java
  │   └── MulticastClient.java
+ │
  ├── rmi/
  │   ├── api/
  │   │   └── MonitorRmi.java          
  │   ├── server/
  │   │   ├── MonitorRmiImpl.java      
- │   │   └── RmiBootstrap.java
- |   |   └── RmiServer.java          
+ │   │   ├── RmiBootstrap.java
+ │   │   └── RmiServer.java          
  │   └── client/
  │       └── RmiClient.java           
- ├──── LeaderDirectory.java          
- │──── SimpleLeaderDirectory.java    
- |──── TCPServerHandler.java
- |──── NodeApp.java
- └── groupa/ / groupb/                
+ │
+ ├── ufrj/
+ │   └── distributed/
+ │       ├── bully/
+ │       │   └── NodeBully.java
+ │       ├── ring/
+ │       │   └── RingElection.java
+ │       └── leader/
+ │           └── Leader.java
+ │
+ ├── groupa/
+ │
+ ├── LeaderDirectory.java          
+ ├── SimpleLeaderDirectory.java    
+ ├── TCPServerHandler.java
+ └── NodeApp.java
 
-src/main/proto/
- ├── auth.proto
- └── monitor.proto
 
 ```
 ## 👨‍💻Como Executar
@@ -150,4 +163,17 @@ mvn exec:java -Dexec.mainClass="br.ifba.saj.dist.NodeApp" -Dexec.args="2 A"
 cd /local do projeto/Simulacao-Completa-de-Ambiente-Distribudo
 mvn exec:java -Dexec.mainClass="br.ifba.saj.dist.NodeApp" -Dexec.args="3 A"
 ```
+Para testar em grupo de terminais:
 
+# Grupo A
+```
+mvn exec:java -Dexec.mainClass="br.ifba.saj.dist.NodeApp" -Dexec.args="1 A"
+mvn exec:java -Dexec.mainClass="br.ifba.saj.dist.NodeApp" -Dexec.args="2 A"
+mvn exec:java -Dexec.mainClass="br.ifba.saj.dist.NodeApp" -Dexec.args="3 A"
+```
+# Grupo B
+```
+mvn exec:java -Dexec.mainClass="br.ifba.saj.dist.NodeApp" -Dexec.args="1 B"
+mvn exec:java -Dexec.mainClass="br.ifba.saj.dist.NodeApp" -Dexec.args="2 B"
+mvn exec:java -Dexec.mainClass="br.ifba.saj.dist.NodeApp" -Dexec.args="3 B"
+```
